@@ -24,11 +24,20 @@ func main() {
 	} else {
 		result, err := amendCustomerData(args)
 		if err == nil {
-			for index, value := range result {
+			/*for index, value := range result {
 				//if index > 0 {
 				fmt.Printf("Index=%d,value %s\n", index, value)
 				//}
-			}
+			}*/
+
+			x, _ := strconv.Atoi(result[1])
+			accountNumber = int64(x)
+
+			firstName = result[2]
+			lastName = result[3]
+			address = result[4]
+			email = result[5]
+
 		} else {
 			fmt.Println(err)
 		}
