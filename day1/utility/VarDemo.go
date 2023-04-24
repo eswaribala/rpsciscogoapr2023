@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
+	"strconv"
 )
 
 var (
@@ -23,9 +25,9 @@ func main() {
 		result, err := amendCustomerData(args)
 		if err == nil {
 			for index, value := range result {
-				if index > 0 {
-					fmt.Printf("Index=%d,value %s\n", index, value)
-				}
+				//if index > 0 {
+				fmt.Printf("Index=%d,value %s\n", index, value)
+				//}
 			}
 		} else {
 			fmt.Println(err)
@@ -34,6 +36,33 @@ func main() {
 
 }
 
-func amendCustomerData(data []string) (updatedData []string, error) {
+func amendCustomerData(data []string) ([]string, error) {
+
+	//dynamically array
+	customerData := make([]string, 7)
+	accountNo, err := strconv.Atoi(data[1])
+	if err == nil {
+		if accountNo <= 0 {
+			return nil, err
+		} else {
+			for index, value := range data {
+				if index > 0 {
+
+					customerData[index] = value
+					if index == 2 {
+						customerData[index] = "Mr/Mrs." + value
+					}
+
+				} else {
+
+					customerData[0] = strconv.Itoa(int(rand.Int31n(10000)))
+				}
+
+			}
+			return customerData, nil
+		}
+	} else {
+		return nil, err
+	}
 
 }
