@@ -24,8 +24,9 @@ func main() {
 	for _, value := range stores.GetAllCustomers() {
 		fmt.Printf("Customer=%+v", value)
 	}
-	//fmt.Printf("Customer=%+v", stores.GetCustomerById(64852))
-	//customer.Address.City = "Pune"
-	//stores.UpdateCustomer(customer)
-
+	fmt.Printf("Customer=%+v", stores.GetCustomerById(686045))
+	customer.Email = "ciscoparam@gmail.com"
+	customer.AccountNo = 686045
+	stores.UpdateCustomer(customer)
+	stores.DeleteCustomer(243729)
 }
