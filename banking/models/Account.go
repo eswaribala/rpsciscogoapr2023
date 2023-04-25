@@ -36,19 +36,19 @@ type Transaction struct {
 	DirectDebit       DirectDebit
 }
 
-func (account *Account) Add() {
+func (account *Account) Add(date Date) {
 
 	fmt.Printf("Account=%+v", account)
 }
 
-func (transaction *Transaction) Add() {
+func (transaction *Transaction) Add(date Date) {
 	fmt.Printf("Transaction=%+v", transaction)
 }
 
-func (account *Account) View() {
+func (account *Account) View(permission bool) {
 
 }
 
-func (transaction *Transaction) View() {
+func (transaction *Transaction) View(permission bool) {
 
 }
