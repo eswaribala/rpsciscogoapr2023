@@ -1,7 +1,9 @@
 package stores
 
 import (
+	"CiscoApr2023/banking/models"
 	"database/sql"
+	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 )
@@ -29,30 +31,28 @@ func CreateAccount(accountNo int64, runningTotal int64, openingDate string, roi 
 	return result.RowsAffected()
 }
 
-/*
-func GetAllTransactions() {
+func GetAllAccounts() {
 	db := ConnectionHelper()
 	defer db.Close()
-	queryString := "select * from transaction"
+	queryString := "select * from savings_account"
 
 	rows, err := db.Query(queryString)
 	defer rows.Close()
 	if err != nil {
 		log.Fatal("Error occurred while saving...", err)
 	}
-	var transactions []mockmodels.MTransaction
+	var accounts []models.Account
 	for rows.Next() {
-		var tObject mockmodels.MTransaction
+		var tObject models.Account
 
-		err := rows.Scan(&tObject.TransactionId, &tObject.Amount,
-			&tObject.Time_Stamp, &tObject.Sender, &tObject.Receiver)
+		err := rows.Scan(&tObject.AccountNo, &tObject.RunningTotal,
+			&tObject.OpeningDate, &tObject.SavingsAccount.InterestRate)
 		if err != nil {
 			log.Fatal(err)
 		}
-		transactions = append(transactions, tObject)
+		accounts = append(accounts, tObject)
 	}
 
-	fmt.Printf("\nTransactions %+v\n", transactions)
+	fmt.Printf("\nTransactions %+v\n", accounts)
 
 }
-*/
