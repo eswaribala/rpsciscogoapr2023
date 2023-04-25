@@ -33,7 +33,7 @@ func CreateAccount(accountNo int64, runningTotal int64, openingDate string, roi 
 func GetAllAccounts() {
 	db := ConnectionHelper()
 	defer db.Close()
-	queryString := "select * from savings_account"
+	queryString := "select * from savingsaccount"
 
 	rows, err := db.Query(queryString)
 	defer rows.Close()

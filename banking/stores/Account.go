@@ -2,19 +2,12 @@ package stores
 
 import (
 	"fmt"
-	"strconv"
 )
-
-type Date struct {
-	Day   int
-	Month int
-	Year  int
-}
 
 type Account struct {
 	AccountNo      int64
 	RunningTotal   int64
-	OpeningDate    Date
+	OpeningDate    string
 	SavingsAccount struct {
 		InterestRate float32
 	}
@@ -24,7 +17,7 @@ type Account struct {
 }
 
 type DirectDebit struct {
-	PaymentDate Date
+	PaymentDate string
 }
 
 type Transaction struct {
@@ -37,12 +30,12 @@ type Transaction struct {
 	DirectDebit       DirectDebit
 }
 
-func (account *Account) Add(date *Date) {
+func (account *Account) Add(date *string) {
 
 	fmt.Printf("Account=%+v\n", account)
-	dateString := strconv.Itoa(account.OpeningDate.Day) + "/" + strconv.Itoa(account.OpeningDate.Month) + "/" + strconv.Itoa(account.OpeningDate.Year)
+	//dateString := strconv.Itoa(account.OpeningDate.Day) + "/" + strconv.Itoa(account.OpeningDate.Month) + "/" + strconv.Itoa(account.OpeningDate.Year)
 	count, err := CreateAccount(account.AccountNo,
-		account.RunningTotal, dateString, account.SavingsAccount.InterestRate)
+		account.RunningTotal, account.OpeningDate, account.SavingsAccount.InterestRate)
 	if err == nil {
 		fmt.Printf("Account Created=%d\n", count)
 	} else {
@@ -69,7 +62,7 @@ func (account *Account) Update(runningTotal *int64) {
 func (account *Account) Delete(id *int64) {
 
 }
-func (transaction *Transaction) Add(date *Date) {
+func (transaction *Transaction) Add(date *string) {
 	fmt.Printf("Transaction=%+v\n", transaction)
 }
 func (transaction *Transaction) View(permission bool) {

@@ -10,14 +10,15 @@ import (
 func main() {
 	//account Instance
 	account := stores.Account{}
-	account.AccountNo = int64(rand.Int31n(100000))
+	account.AccountNo = int64(rand.Int31n(10000))
 	account.RunningTotal = 4365873
-	account.OpeningDate = stores.Date{Day: 25, Month: 4, Year: 2023}
+	account.OpeningDate = "25/4/2023"
 	account.SavingsAccount.InterestRate = 0.5
 
 	var bankingRef facades.IBank
 	bankingRef = &account
-	bankingRef.Add(&stores.Date{Day: 23, Month: 4, Year: 2023})
+	dateValue := "25/4/2023"
+	bankingRef.Add(&dateValue)
 	bankingRef.View(true)
 
 	transaction := stores.Transaction{}
@@ -27,9 +28,9 @@ func main() {
 	transaction.TimeStamp = "11:45:00"
 	transaction.Sender = "Parameswari"
 	transaction.Receiver = "Vignesh"
-	transaction.DirectDebit.PaymentDate = stores.Date{Day: 23, Month: 4, Year: 2023}
+	transaction.DirectDebit.PaymentDate = "25/4/2023"
 	bankingRef = &transaction
-	bankingRef.Add(&stores.Date{Day: 23, Month: 4, Year: 2023})
+	bankingRef.Add(&dateValue)
 	bankingRef.View(false)
 
 }
