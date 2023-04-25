@@ -1,5 +1,9 @@
 package models
 
+import (
+	"fmt"
+)
+
 type Date struct {
 	Day   int
 	Month int
@@ -32,18 +36,19 @@ type Transaction struct {
 	DirectDebit       DirectDebit
 }
 
-func (account *Account) Add(date *Date) {
+func (account *Account) Add() {
+
+	fmt.Printf("Account=%+v", account)
+}
+
+func (transaction *Transaction) Add() {
+	fmt.Printf("Transaction=%+v", transaction)
+}
+
+func (account *Account) View() {
 
 }
 
-func (transaction *Transaction) Add(date *Date) {
-
-}
-
-func (account *Account) View(printOption *bool, accountNo *int64) (*Account, error) {
-
-}
-
-func (transaction *Transaction) View(printOption *bool, senderAccountNo *int64) (*Transaction, error) {
+func (transaction *Transaction) View() {
 
 }
