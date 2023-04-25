@@ -15,6 +15,6 @@ func main() {
 
 	var bankingRef facades.IBank
 	bankingRef = &account
-	bankingRef.Add(models.Date{Day: 23, Month: 4, Year: 2023})
+	bankingRef.Add(&models.Date{Day: 23, Month: 4, Year: 2023})
 	bankingRef.View(true)
 }
