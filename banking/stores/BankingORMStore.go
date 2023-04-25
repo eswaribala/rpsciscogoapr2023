@@ -28,3 +28,27 @@ func SaveCustomer(customer models.Customer) {
 	tx.Commit()
 
 }
+
+func GetAllCustomers() {
+	db := ConnectionHelperORM()
+	var customers []models.Customer
+	db.Find(&customers)
+}
+
+func GetCustomerById(accountNo int64) {
+	db := ConnectionHelperORM()
+	var customer models.Customer
+	db.First(&customer, accountNo)
+}
+func UpdateCustomer(customer models.Customer) {
+	db := ConnectionHelperORM()
+
+	tx := db.Begin()
+	db.Save(customer)
+	tx.Commit()
+}
+
+func DeleteCustomer(accountNo int64) {
+	db := ConnectionHelperORM()
+	db.Where("account_no=?", accountNo).Delete(&models.Customer{})
+}
