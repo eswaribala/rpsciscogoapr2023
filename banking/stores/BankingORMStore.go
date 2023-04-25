@@ -18,7 +18,7 @@ func ConnectionHelperORM() *gorm.DB {
 	return db
 }
 
-func SaveTransaction(customer models.Customer) {
+func SaveCustomer(customer models.Customer) {
 
 	db := ConnectionHelperORM()
 	//generate table
@@ -26,5 +26,5 @@ func SaveTransaction(customer models.Customer) {
 	tx := db.Begin()
 	db.Save(customer)
 	tx.Commit()
-	
+
 }
