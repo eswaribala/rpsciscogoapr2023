@@ -26,7 +26,7 @@ func main() {
 		if err == nil {
 			/*for index, value := range result {
 				//if index > 0 {
-				fmt.Printf("Index=%d,value %s\n", index, value)
+				fmt.Printf("Index=%d,value %stores\n", index, value)
 				//}
 			}*/
 

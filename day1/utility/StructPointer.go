@@ -15,5 +15,5 @@ func main() {
 	u.occupation = "driver"
 	u.age = 44
 
-	fmt.Printf("%s is %d years old and he is a %s\n", u.name, u.age, u.occupation)
+	fmt.Printf("%stores is %d years old and he is a %stores\n", u.name, u.age, u.occupation)
 }

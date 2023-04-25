@@ -21,6 +21,6 @@ func main() {
 		Email: "Param@gmail.com", Active: true}
 
 	customerJson, _ := json.Marshal(customer)
-	fmt.Printf("Json Customer%s", customerJson)
+	fmt.Printf("Json Customer%stores", customerJson)
 
 }

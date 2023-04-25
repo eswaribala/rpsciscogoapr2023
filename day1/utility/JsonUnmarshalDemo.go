@@ -22,11 +22,11 @@ func main() {
 					fmt.Printf("%+v", innerValue)
 
 				} else {
-					fmt.Printf("key=%s,value%s", innerKey, innerValue)
+					fmt.Printf("key=%stores,value%stores", innerKey, innerValue)
 				}
 			}
 		} else {
-			fmt.Printf("key=%s,value%s", outerKey, outerValue)
+			fmt.Printf("key=%stores,value%stores", outerKey, outerValue)
 		}
 
 	}

@@ -47,5 +47,5 @@ func main() {
 	for _, value := range customerList {
 		fmt.Printf("Customer=%+v\n", value)
 	}
-	//fmt.Printf("First Name=%s", customer.FirstName)
+	//fmt.Printf("First Name=%stores", customer.FirstName)
 }

@@ -52,6 +52,6 @@ func main() {
 	//iterate over the keys, looking up
 	//the associated value in the map
 	for _, k := range keysv1 {
-		fmt.Printf("%s appears %d times\n", k, customersTable[k])
+		fmt.Printf("%stores appears %d times\n", k, customersTable[k])
 	}
 }

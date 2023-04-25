@@ -23,7 +23,7 @@ func main() {
 	fmt.Println("Enter Status")
 	fmt.Scanln(&active)
 
-	fmt.Printf("AccountNp%d\n First Name=%s\n Active%t", accountNumber, firstName, active)
+	fmt.Printf("AccountNp%d\n First Name=%stores\n Active%t", accountNumber, firstName, active)
 	//Type Checking...
 	fmt.Println(reflect.TypeOf(accountNumber))
 	fmt.Println(reflect.TypeOf(firstName))

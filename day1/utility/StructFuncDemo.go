@@ -19,7 +19,7 @@ func main() {
 		age:        34,
 		info: func(name string, occupation string, age int) string {
 
-			return fmt.Sprintf("%s is %d years old and he is a %s\n", name, age, occupation)
+			return fmt.Sprintf("%stores is %d years old and he is a %stores\n", name, age, occupation)
 		},
 	}
 
