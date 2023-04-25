@@ -1,4 +1,4 @@
-package models
+package stores
 
 import (
 	"CiscoApr2023/banking/stores"
@@ -52,6 +52,7 @@ func (account *Account) Add(date *Date) {
 }
 
 func (account *Account) View(permission bool) {
+	stores.GetAllAccounts()
 	if permission {
 		fmt.Println("Print the Receipt")
 	} else {

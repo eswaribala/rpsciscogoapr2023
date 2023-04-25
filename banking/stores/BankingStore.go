@@ -1,7 +1,7 @@
 package stores
 
 import (
-	"CiscoApr2023/banking/models"
+	stores "CiscoApr2023/banking/models"
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -41,9 +41,9 @@ func GetAllAccounts() {
 	if err != nil {
 		log.Fatal("Error occurred while saving...", err)
 	}
-	var accounts []models.Account
+	var accounts []stores.Account
 	for rows.Next() {
-		var tObject models.Account
+		var tObject stores.Account
 
 		err := rows.Scan(&tObject.AccountNo, &tObject.RunningTotal,
 			&tObject.OpeningDate, &tObject.SavingsAccount.InterestRate)
