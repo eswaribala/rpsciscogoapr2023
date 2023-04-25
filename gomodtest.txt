@@ -1,0 +1,5 @@
+in ./greetings, do go mod init example.com/greetings
+
+from another module, do go mod edit -replace=example.com/greetings=../greetings
+
+go get example.com/greetings
