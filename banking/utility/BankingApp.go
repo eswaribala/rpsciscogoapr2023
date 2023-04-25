@@ -3,6 +3,7 @@ package main
 import (
 	"CiscoApr2023/banking/facades"
 	"CiscoApr2023/banking/stores"
+
 	"math/rand"
 )
 
@@ -28,7 +29,7 @@ func main() {
 	transaction.Receiver = "Vignesh"
 	transaction.DirectDebit.PaymentDate = stores.Date{Day: 23, Month: 4, Year: 2023}
 	bankingRef = &transaction
-	bankingRef.Add(&models.Date{Day: 23, Month: 4, Year: 2023})
+	bankingRef.Add(&stores.Date{Day: 23, Month: 4, Year: 2023})
 	bankingRef.View(false)
 
 }

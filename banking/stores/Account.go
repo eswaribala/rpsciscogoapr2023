@@ -1,7 +1,6 @@
 package stores
 
 import (
-	"CiscoApr2023/banking/stores"
 	"fmt"
 	"strconv"
 )
@@ -42,7 +41,7 @@ func (account *Account) Add(date *Date) {
 
 	fmt.Printf("Account=%+v\n", account)
 	dateString := strconv.Itoa(account.OpeningDate.Day) + "/" + strconv.Itoa(account.OpeningDate.Month) + "/" + strconv.Itoa(account.OpeningDate.Year)
-	count, err := stores.CreateAccount(account.AccountNo,
+	count, err := CreateAccount(account.AccountNo,
 		account.RunningTotal, dateString, account.SavingsAccount.InterestRate)
 	if err == nil {
 		fmt.Printf("Account Created=%d\n", count)
@@ -52,7 +51,7 @@ func (account *Account) Add(date *Date) {
 }
 
 func (account *Account) View(permission bool) {
-	stores.GetAllAccounts()
+	GetAllAccounts()
 	if permission {
 		fmt.Println("Print the Receipt")
 	} else {

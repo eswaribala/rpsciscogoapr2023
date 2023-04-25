@@ -1,11 +1,11 @@
 package facades
 
 import (
-	"CiscoApr2023/banking/models"
+	"CiscoApr2023/banking/stores"
 )
 
 type IBank interface {
-	Add(date *models.Date)
+	Add(date *stores.Date)
 	View(permission bool)
 	ViewById(id *int64)
 	Update(runningTotal *int64)
