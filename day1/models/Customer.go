@@ -1,7 +1,7 @@
 package models
 
 type Customer struct {
-	AccountNo int64   `json:"account_no"`
+	AccountNo int64   `json:"account_no" gorm:"primary_key"`
 	FirstName string  `json:"first_name"`
 	LastName  string  `json:"last_name"`
 	Address   Address `json:"address"`

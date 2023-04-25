@@ -3,6 +3,7 @@ package main
 import (
 	"CiscoApr2023/banking/stores"
 	"CiscoApr2023/day1/models"
+	"fmt"
 	"math/rand"
 	"strconv"
 	"time"
@@ -20,5 +21,11 @@ func main() {
 			Year: 1900 + int(rand.Int31n(122))},
 		Email: "Param@gmail.com", Active: true}
 	stores.SaveCustomer(customer)
+	for _, value := range stores.GetAllCustomers() {
+		fmt.Printf("Customer=%+v", value)
+	}
+	//fmt.Printf("Customer=%+v", stores.GetCustomerById(64852))
+	//customer.Address.City = "Pune"
+	//stores.UpdateCustomer(customer)
 
 }
