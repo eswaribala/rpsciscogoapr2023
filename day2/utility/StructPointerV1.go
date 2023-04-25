@@ -19,7 +19,7 @@ func main() {
 		Year: 1900 + int(rand.Int31n(122))}
 	customer.Email = "Param@gmail.com"
 	customer.Active = true
-	changeCustomerName(customer)
+	changeCustomerNameV1(customer)
 	fmt.Printf("Customer=%+v", customer)
 }
 
