@@ -3,11 +3,12 @@ package main
 import (
 	models2 "CiscoApr2023/day1/models"
 	"CiscoApr2023/day2/models"
+	"fmt"
 	"math/rand"
 )
 
 func main() {
-	var rtgsList []*models.RTGS
+	var rtgsList = make([]*models.RTGS, 10)
 	for i := 0; i < 10; i++ {
 		rtgsList[i] = new(models.RTGS)
 		rtgsList[i].FundTransfer = models.FundTransfer{
@@ -20,6 +21,10 @@ func main() {
 		if i > 0 {
 			rtgsList[i].Link = rtgsList[i-1]
 		}
+	}
+
+	for index, value := range rtgsList {
+		fmt.Printf("RTGS position=%d having value=%+v", index, value)
 	}
 
 }
