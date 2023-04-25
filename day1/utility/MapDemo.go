@@ -4,6 +4,7 @@ import (
 	"CiscoApr2023/day1/models"
 	"fmt"
 	"math/rand"
+	"sort"
 	"strconv"
 )
 
@@ -26,7 +27,7 @@ func main() {
 			Email: "Param@gmail.com", Active: true}
 	}
 
-	keys := make([]models.CustomerType, 10)
+	keys := make([]models.CustomerType, len(customersTable))
 	i := 0
 	for key, _ := range customersTable {
 		fmt.Printf("Key=%d", key)
@@ -34,4 +35,23 @@ func main() {
 		i++
 	}
 
+	//slicing
+	//make a string slice with enough capacity to hold all the keys
+	keysv1 := make([]models.CustomerType, 0, len(customersTable))
+
+	//range over the keys and append them to the slice
+	for k := range customersTable {
+		keysv1 = append(keysv1, k)
+	}
+
+	//sort the slice of keys alphabetically
+	sort.SliceStable(keysv1, func(i, j int) bool {
+		return keysv1[i].AccountNo < keysv1[j].AccountNo
+	})
+
+	//iterate over the keys, looking up
+	//the associated value in the map
+	for _, k := range keysv1 {
+		fmt.Printf("%s appears %d times\n", k, customersTable[k])
+	}
 }
