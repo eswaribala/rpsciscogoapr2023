@@ -1,7 +1,9 @@
 package models
 
 import (
+	"CiscoApr2023/banking/stores"
 	"fmt"
+	"strconv"
 )
 
 type Date struct {
@@ -39,6 +41,13 @@ type Transaction struct {
 func (account *Account) Add(date *Date) {
 
 	fmt.Printf("Account=%+v\n", account)
+	dateString := strconv.Itoa(account.OpeningDate.Day) + "/" + strconv.Itoa(account.OpeningDate.Month) + "/" + strconv.Itoa(account.OpeningDate.Year)
+	count, err := stores.CreateAccount(account.AccountNo, account.RunningTotal, dateString, account.SavingsAccount.InterestRate)
+	if err == nil {
+		fmt.Printf("Account Created=%d\n", count)
+	} else {
+		fmt.Println(err)
+	}
 }
 
 func (transaction *Transaction) Add(date *Date) {
