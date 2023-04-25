@@ -3,6 +3,7 @@ package main
 import (
 	"CiscoApr2023/banking/facades"
 	"CiscoApr2023/banking/stores"
+	"time"
 
 	"math/rand"
 )
@@ -10,6 +11,7 @@ import (
 func main() {
 	//account Instance
 	account := stores.Account{}
+	rand.Seed(time.Now().UnixNano())
 	account.AccountNo = int64(rand.Int31n(10000))
 	account.RunningTotal = 4365873
 	account.OpeningDate = "25/4/2023"
