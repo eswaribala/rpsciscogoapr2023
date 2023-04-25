@@ -1,7 +1,6 @@
 package stores
 
 import (
-	"CiscoApr2023/day1/models"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -18,7 +17,7 @@ func ConnectionHelperORM() *gorm.DB {
 	return db
 }
 
-func SaveCustomer(customer models.Customer) {
+func SaveCustomer(customer Customer) {
 
 	db := ConnectionHelperORM()
 	//generate table
@@ -29,20 +28,20 @@ func SaveCustomer(customer models.Customer) {
 
 }
 
-func GetAllCustomers() []models.Customer {
+func GetAllCustomers() []Customer {
 	db := ConnectionHelperORM()
-	var customers []models.Customer
+	var customers []Customer
 	db.Find(&customers)
 	return customers
 }
 
-func GetCustomerById(accountNo int64) models.Customer {
+func GetCustomerById(accountNo int64) Customer {
 	db := ConnectionHelperORM()
-	var customer models.Customer
+	var customer Customer
 	db.First(&customer, accountNo)
 	return customer
 }
-func UpdateCustomer(customer models.Customer) models.Customer {
+func UpdateCustomer(customer Customer) Customer {
 	db := ConnectionHelperORM()
 
 	tx := db.Begin()
@@ -53,5 +52,5 @@ func UpdateCustomer(customer models.Customer) models.Customer {
 
 func DeleteCustomer(accountNo int64) {
 	db := ConnectionHelperORM()
-	db.Where("account_no=?", accountNo).Delete(&models.Customer{})
+	db.Where("account_no=?", accountNo).Delete(&Customer{})
 }
