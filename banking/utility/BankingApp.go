@@ -17,4 +17,17 @@ func main() {
 	bankingRef = &account
 	bankingRef.Add(&models.Date{Day: 23, Month: 4, Year: 2023})
 	bankingRef.View(true)
+
+	transaction := models.Transaction{}
+	transaction.SenderAccountNo = 348768
+	transaction.ReceiverAccountNo = 235652
+	transaction.Amount = 50000
+	transaction.TimeStamp = "11:45:00"
+	transaction.Sender = "Parameswari"
+	transaction.Receiver = "Vignesh"
+	transaction.DirectDebit.PaymentDate = models.Date{Day: 23, Month: 4, Year: 2023}
+	bankingRef = &transaction
+	bankingRef.Add(&models.Date{Day: 23, Month: 4, Year: 2023})
+	bankingRef.View(false)
+
 }
