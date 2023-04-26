@@ -13,11 +13,14 @@ var wg1, wg2 sync.WaitGroup
 
 func readLinkContents(httpResponse *http.Response) {
 	defer wg2.Done()
+	testArr := make([]string, 10)
+	fmt.Println(testArr[10])
+
 	content, err := ioutil.ReadAll(httpResponse.Body)
 	if err != nil {
 		errors.New("The content not accessible")
 	} else {
-		fmt.Println(content)
+		fmt.Printf("Content of given Link=%s\n", content)
 	}
 
 }
