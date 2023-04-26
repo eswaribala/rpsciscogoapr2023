@@ -20,6 +20,7 @@ func writeCustomerData(pchan chan models.Customer) {
 				Day: 1 + int(rand.Int31n(26)), Month: 1 + int(rand.Int31n(11)),
 				Year: 1900 + int(rand.Int31n(122))},
 			Email: "Param@gmail.com", Active: true}
+		fmt.Println("Successfully Wrote", i, "to channel")
 	}
 
 	close(pchan)
@@ -27,11 +28,11 @@ func writeCustomerData(pchan chan models.Customer) {
 
 func main() {
 
-	customerBuffCh := make(chan models.Customer, 5)
+	customerBuffCh := make(chan models.Customer, 2)
 	go writeCustomerData(customerBuffCh)
 	time.Sleep(3 * time.Second)
 	for value := range customerBuffCh {
-		fmt.Printf("Customer Data=%+v", value)
+		fmt.Printf("Customer Data=%+v\n", value)
 		time.Sleep(2 * time.Second)
 	}
 }
