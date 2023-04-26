@@ -11,11 +11,21 @@ import (
 
 var wg1, wg2 sync.WaitGroup
 
+func recoverFromOutofIndexBound() {
+	if r := recover(); r != nil {
+		fmt.Println("recovered from ", r)
+	}
+}
+
 func readLinkContents(httpResponse *http.Response) {
 	defer wg2.Done()
+	defer recoverFromOutofIndexBound()
 	testArr := make([]string, 10)
-	fmt.Println(testArr[10])
-
+	i := 10
+	if i >= 10 {
+		fmt.Println(testArr[10])
+		panic("Accessing index out of bound")
+	}
 	content, err := ioutil.ReadAll(httpResponse.Body)
 	if err != nil {
 		errors.New("The content not accessible")
