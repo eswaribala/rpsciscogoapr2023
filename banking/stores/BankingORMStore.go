@@ -14,16 +14,19 @@ func ConnectionHelperORM() *gorm.DB {
 		log.Panic(err)
 	}
 	log.Println("Connection Established")
+	//generate table
+	db.AutoMigrate(&Customer{}, &Address{})
+
 	return db
 }
 
 func SaveCustomer(customer Customer) {
 
 	db := ConnectionHelperORM()
-	//generate table
-	db.AutoMigrate(customer)
+
 	tx := db.Begin()
-	db.Save(customer)
+	db.Set("gorm:auto_preload", true)
+	db.Create(customer)
 	tx.Commit()
 
 }
@@ -31,7 +34,7 @@ func SaveCustomer(customer Customer) {
 func GetAllCustomers() []Customer {
 	db := ConnectionHelperORM()
 	var customers []Customer
-	db.Find(&customers)
+	db.Preloads("Address").Find(&customers)
 	return customers
 }
 
