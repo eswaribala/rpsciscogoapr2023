@@ -16,7 +16,7 @@ func capitalizeName(name string) (string, int, error) {
 	return strings.ToTitle(name), len(name), nil
 }
 func main() {
-	name, size, err := capitalizeName("sammy")
+	name, size, err := capitalizeName("")
 	if err != nil {
 		fmt.Println("An error occurred:", err)
 	}

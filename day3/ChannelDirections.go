@@ -14,6 +14,7 @@ func work() {
 	fmt.Println(i)
 }
 
+// receiver channel
 func routine(command <-chan string, wg *sync.WaitGroup) {
 	defer wg.Done()
 	var status = "Play"
