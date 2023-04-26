@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func accessLinkV1(link string, pChannel chan string) {
@@ -23,12 +24,14 @@ func main() {
 	//create the channel
 	c := make(chan string)
 	for _, value := range links {
+		//delay
+		time.Sleep(1 * time.Second)
 		go accessLinkV1(value, c)
 	}
 
 	for _, value := range links {
-		<-c
-		fmt.Printf("Link%s\n", value)
+
+		fmt.Printf("Link%s\t sends message as%s\n", value, <-c)
 	}
 	fmt.Println("Returned to main....")
 
