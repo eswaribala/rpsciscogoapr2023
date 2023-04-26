@@ -20,10 +20,10 @@ func recoverFromOutofIndexBound() {
 func readLinkContents(httpResponse *http.Response) {
 	defer wg2.Done()
 	defer recoverFromOutofIndexBound()
-	//testArr := make([]string, 10)
+
 	i := 10
 	if i >= 10 {
-		//fmt.Println(testArr[i])
+		
 		panic("Accessing index out of bound")
 	}
 	content, err := ioutil.ReadAll(httpResponse.Body)
