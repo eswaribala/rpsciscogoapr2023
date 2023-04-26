@@ -17,17 +17,18 @@ func main() {
 	}(stockch)
 	go customerMessage(customerch)
 	go staffMessage(staffch)
-
-	func() {
-		select {
-		case m1 := <-customerch:
-			fmt.Printf("Customer Message%s", m1)
-		case m2 := <-staffch:
-			fmt.Printf("Staff Message%s", m2)
-		case m3 := <-stockch:
-			fmt.Printf("Stock Message%d", m3)
-		}
-	}()
+	for i := 0; i < 3; i++ {
+		func() {
+			select {
+			case m1 := <-customerch:
+				fmt.Printf("Customer Message%s\n", m1)
+			case m2 := <-staffch:
+				fmt.Printf("Staff Message%s\n", m2)
+			case m3 := <-stockch:
+				fmt.Printf("Stock Message%d\n", m3)
+			}
+		}()
+	}
 
 }
 
@@ -37,6 +38,6 @@ func customerMessage(pCustomerch chan string) {
 }
 
 func staffMessage(pStaffch chan string) {
-	time.Sleep(2 * time.Second)
+	time.Sleep(12 * time.Second)
 	pStaffch <- "Process will take 5 to 7 working days"
 }
