@@ -4,6 +4,7 @@ import (
 	"CiscoApr2023/day4/models"
 	"encoding/json"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
@@ -45,18 +46,40 @@ func SaveCustomer(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(customer)
 }
 
-func GetAllCustomers() []models.Customer {
+// GetAllCustomers godoc
+// @Summary Get details of all customers
+// @Description Get details of all customers
+// @Tags customers
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} models.Customer
+// @Router /customers [get]
+func GetAllCustomers(w http.ResponseWriter, r *http.Request) {
 	db := ConnectionHelperORM()
+	w.Header().Set("Content-Type", "application/json")
 	var customers []models.Customer
+	//db.Find(&customers)
 	db.Preloads("Address").Find(&customers)
-	return customers
+	json.NewEncoder(w).Encode(customers)
 }
 
-func GetCustomerById(accountNo int64) models.Customer {
+// GetCustomerById godoc
+// @Summary Get details of all customers
+// @Description Get details of all customers
+// @Tags customers
+// @Accept  json
+// @Produce  json
+// @Param accountNo path int true "ID of the Customer"
+// @Success 200 {object} models.Customer
+// @Router /customers/{accountNo} [get]
+func GetCustomerById(w http.ResponseWriter, r *http.Request) {
 	db := ConnectionHelperORM()
 	var customer models.Customer
-	db.First(&customer, accountNo)
-	return customer
+	params := mux.Vars(r)
+	inputAccountNo := params["accountNo"]
+	db.First(&customer, inputAccountNo)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(customer)
 }
 func UpdateCustomer(customer models.Customer) models.Customer {
 	db := ConnectionHelperORM()
