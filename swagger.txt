@@ -25,6 +25,11 @@ add all the required annotations
 // @host localhost:7070
 // @BasePath /
 # In your project dir (~/GOPATH/src/swaggo-orders-api normally)
+
+//for mac or linux users
+export PATH=$(go env GOPATH)/bin:$PATH
+
+
 swag init -g main.go
 
 http://localhost:6062/swagger/index.html
