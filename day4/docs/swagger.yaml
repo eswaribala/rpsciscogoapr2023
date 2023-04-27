@@ -1,0 +1,161 @@
+basePath: /
+definitions:
+  models.Address:
+    properties:
+      city:
+        type: string
+      door_no:
+        type: string
+      state:
+        type: string
+      street_name:
+        type: string
+    type: object
+  models.Customer:
+    properties:
+      account_no:
+        type: integer
+      active:
+        type: boolean
+      address:
+        $ref: '#/definitions/models.Address'
+      dob:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+    type: object
+host: localhost:7072
+info:
+  contact:
+    email: parameswaribala@gmail.com
+    name: API Support
+  description: This is api service for managing Customer
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Customer API
+  version: "1.0"
+paths:
+  /customers:
+    get:
+      consumes:
+      - application/json
+      description: Get details of all customers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Customer'
+            type: array
+      summary: Get details of all customers
+      tags:
+      - customers
+    post:
+      consumes:
+      - application/json
+      description: Save a new customer with the input payload
+      parameters:
+      - description: Create customer
+        in: body
+        name: customer
+        required: true
+        schema:
+          $ref: '#/definitions/models.Customer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Customer'
+      summary: Save a new customer
+      tags:
+      - customers
+    put:
+      consumes:
+      - application/json
+      description: Update existing customer with the input payload
+      parameters:
+      - description: Create customer
+        in: body
+        name: customer
+        required: true
+        schema:
+          $ref: '#/definitions/models.Customer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Customer'
+      summary: Update existing customer
+      tags:
+      - customers
+  /customers/{accountNo}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete customer by id
+      parameters:
+      - description: ID of the Customer
+        in: path
+        name: accountNo
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Customer'
+      summary: Delete customer
+      tags:
+      - customers
+    get:
+      consumes:
+      - application/json
+      description: Get details of all customers
+      parameters:
+      - description: ID of the Customer
+        in: path
+        name: accountNo
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Customer'
+      summary: Get details of all customers
+      tags:
+      - customers
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: Get details of all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              type: string
+            type: array
+      summary: Get details of all users
+      tags:
+      - users
+swagger: "2.0"
