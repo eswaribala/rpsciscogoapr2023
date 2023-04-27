@@ -59,9 +59,9 @@ func createTransactionHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Get the information about the department from the form info
-	id, _ := strconv.Atoi(r.Form.Get("transactionId"))
+	id, _ := strconv.Atoi(r.Form.Get("transaction_id"))
 	transaction.TransactionId = int64(id)
-	transaction.TransactionDate = r.Form.Get("transactionDate")
+	transaction.TransactionDate = r.Form.Get("transaction_date")
 	amount, _ := strconv.Atoi(r.Form.Get("amount"))
 	transaction.Amount = int64(amount)
 	// Append our existing list of departments with a new entry

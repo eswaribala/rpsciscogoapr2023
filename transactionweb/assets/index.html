@@ -26,9 +26,9 @@
         <fieldset>
             <legend>Add Transaction</legend>
             Transaction Id:
-            <input type="number" name="transactionId">
+            <input type="text" name="transaction_id">
             <br/> Date:
-            <input type="date" name="transactionDate">
+            <input type="date" name="transaction_date">
             <br/> Amount:
             <input type="number" name="amount">
             <br/>
@@ -36,7 +36,7 @@
         </fieldset>
     </form>
 </section>
--->
+
 <script>
     transactionTable = document.querySelector("table")
 
@@ -55,9 +55,9 @@
                 // Create the table data elements for the species and
                 // description columns
                  id = document.createElement("td")
-                id.innerHTML = tran.transactionId
+                id.innerHTML = tran.transaction_id
                 date = document.createElement("td")
-                date.innerHTML = tran.transactionDate
+                date.innerHTML = tran.transaction_date
                 amount = document.createElement("td")
                 amount.innerHTML = tran.amount
                 // Add the data elements to the row
