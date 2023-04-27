@@ -1,0 +1,73 @@
+.img{
+    width:100px;
+    height: 100px;
+}
+
+
+.header-menu {
+
+    background-color:navy;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.multicolortext {
+    background-image: linear-gradient(to left, violet,  yellow, orange, red);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-family: "Lucida Calligraphy"
+}
+
+.body-menu {
+    margin-top: 5%;
+    background-color:white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.table{
+
+    justify-content:space-around;
+    font-size: calc(6px + 2vmin);
+    background-color:white;
+    color: navy;
+    border: navy;
+
+}
+
+
+tr:nth-child(2n+1)
+{
+    background-color: navy;
+    color: white;
+}
+
+.form
+{
+
+    background-color:navy;
+    justify-content:space-around;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    border: white;
+    width:25%
+}
+
+legend{
+    text-align: center;
+}
+.button{
+    margin-top: 2%;
+    color:navy;
+    background-color: white;
+    margin-left: 50%;
+    font-size: calc(6px + 2vmin);
+}

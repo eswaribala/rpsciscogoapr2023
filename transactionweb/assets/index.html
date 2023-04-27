@@ -3,8 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
+<section class="header-menu">
+    <img class="img" src="images/veblogo.jpg"/>
+    <h1 >Bank Transactions</h1>
+    <h4 class="multicolortext">We Support Customers</h4>
+</section>
+<section class="body-menu">
+    <table class="table">
+        <tr>
+            <th>Transaction Id</th>
+            <th>Date</th>
+            <th>Amount</th>
+        </tr>
 
+        </tr>
+    </table>
+    <br/>
+    <form class="form" action="/transactions" method="post">
+        <fieldset>
+            <legend>Add Transaction</legend>
+            Transaction:
+            <input type="number" name="transactionId">
+            <br/> Description:
+            <input type="date" name="transactionDate">
+            <br/>
+            <input type="nnumber" name="amount">
+            <br/>
+            <input class="button" type="submit" value="Submit">
+        </fieldset>
+    </form>
+</section>
+-->
+<script>
+    transactionTable = document.querySelector("table")
+
+    /*
+    Use the browsers `fetch` API to make a GET call to /add
+    We expect the response to be a JSON list of birds, of the
+    form :
+    [
+      {"orthodontics":"...","description":"..."},
+      {"prosthodontics":"...","description":"..."}
+    ]
+    */
+
+    //fetch API
+
+    fetch("/transactions")
+        .then(response => response.json())
+        .then(transactionsList => {
+            //Once we fetch the list, we iterate over it
+            transactionsList.forEach(tran => {
+                // Create the table row
+                row = document.createElement("tr")
+
+                // Create the table data elements for the species and
+                // description columns
+                 id = document.createElement("td")
+                id.innerHTML = tran.transactionId
+                date = document.createElement("td")
+                date.innerHTML = tran.transactionDate
+                amount = document.createElement("td")
+                amount.innerHTML = tran.amount
+                // Add the data elements to the row
+                row.appendChild(id)
+                row.appendChild(date)
+                row.appendChild(amount)
+                // Finally, add the row element to the table itself
+                transactionTable.appendChild(row)
+            })
+        })
+</script>
 </body>
 </html>
