@@ -13,12 +13,16 @@ import (
 )
 
 func ConnectionHelperORM() *gorm.DB {
-	db, err := gorm.Open("mysql", "root:vignesh@tcp(127.0.0.1:3306)/ciscobankingdb?charset=utf8&parseTime=True")
-
+	//db, err := gorm.Open("mysql", "root:vignesh@tcp(127.0.0.1:3306)/ciscobankingdb?charset=utf8&parseTime=True")
+	//dataSourceName := "root:vignesh@tcp(mysql:3306)/?parseTime=True"
+	//db, err := gorm.Open("mysql", dataSourceName)
+	db, err := gorm.Open("mysql", "root:vignesh@(mysql:3306)/?parseTime=true")
 	if err != nil {
 		log.Panic(err)
 	}
 	log.Println("Connection Established")
+	db.Exec("Create Database ciscobankingdb")
+	db.Exec("use ciscobankingdb")
 	//generate table
 	db.AutoMigrate(&models.Customer{}, &models.Address{})
 
