@@ -32,4 +32,8 @@ export PATH=$(go env GOPATH)/bin:$PATH
 
 swag init -g main.go
 
-http://localhost:6062/swagger/index.html
+reload the project 
+
+go run .
+
+http://localhost:7072/swagger/index.html
