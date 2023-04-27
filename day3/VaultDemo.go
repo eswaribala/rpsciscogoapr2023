@@ -20,21 +20,26 @@ func main() {
 		panic(err)
 	}
 	client.SetToken(token)
+	/*
+		//writing the data
+		inputData := map[string]interface{}{
+			"data": map[string]interface{}{
+				"username": "root",
+				"password": "vignesh",
+			},
+		}
+		output, err := client.Logical().Write("secret/data/mysql", inputData)
+		fmt.Println(output)
 
-	//writing the data
-	inputData := map[string]interface{}{
-		"data": map[string]interface{}{
-			"first": "ankit",
-		},
-	}
-	output, err := client.Logical().Write("secret/data/abd", inputData)
-	fmt.Println(output)
+		if err != nil {
+			fmt.Println(err)
+		}
 
-	if err != nil {
-		fmt.Println(err)
+	*/
+	response, err := client.Logical().Read("secret/ciscosecret")
+	for key, value := range response.Data {
+		fmt.Printf("%s,%s", key, value)
 	}
-	response, err := client.Logical().Read("secret/data/abd")
-	fmt.Println(response.Data)
 
 	/*
 		//deleting the data
