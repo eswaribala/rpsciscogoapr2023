@@ -31,17 +31,17 @@ func main() {
 	// Read
 	router.HandleFunc("/customers/{accountNo}", stores.GetCustomerById).Methods("GET")
 	// Read-all
-	router.HandleFunc("/customers", stores.GetCustomers).Methods("GET")
+	router.HandleFunc("/customers", stores.GetAllCustomers).Methods("GET")
 	// Update
 	//router.HandleFunc("/customers/{accountNo}", stores.UpdateCustomer).Methods("PUT")
 	// Delete
-	router.HandleFunc("/customers/{accountNo}", stores.DeleteCustomerById).Methods("DELETE")
-	router.HandleFunc("/employees", stores.GetEmployees).Methods("GET")
+	router.HandleFunc("/customers/{accountNo}", stores.DeleteCustomer).Methods("DELETE")
+	router.HandleFunc("/users", stores.GetUsers).Methods("GET")
 	// Initialize db connection
-	stores.InitDB()
+	stores.ConnectionHelperORM()
 
 	// Swagger
 	router.PathPrefix("/swagger").Handler(httpSwagger.WrapHandler)
 	//router.PathPrefix("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	log.Fatal(http.ListenAndServe(":6064", router))
+	log.Fatal(http.ListenAndServe(":7072", router))
 }

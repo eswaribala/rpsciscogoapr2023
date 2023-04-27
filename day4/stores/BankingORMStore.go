@@ -9,6 +9,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func ConnectionHelperORM() *gorm.DB {
@@ -81,16 +82,45 @@ func GetCustomerById(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(customer)
 }
-func UpdateCustomer(customer models.Customer) models.Customer {
-	db := ConnectionHelperORM()
 
+// UpdateCustomer godoc
+// @Summary Update existing customer
+// @Description Update existing customer with the input payload
+// @Tags customers
+// @Accept  json
+// @Produce  json
+// @Param customer body models.Customer true "Create customer"
+// @Success 200 {object} models.Customer
+// @Router /customers [put]
+func UpdateCustomer(w http.ResponseWriter, r *http.Request) {
+	db := ConnectionHelperORM()
+	var updatedCustomer models.Customer
+	json.NewDecoder(r.Body).Decode(&updatedCustomer)
 	tx := db.Begin()
-	db.Save(customer)
+	db.Save(&updatedCustomer)
 	tx.Commit()
-	return customer
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(updatedCustomer)
 }
 
-func DeleteCustomer(accountNo int64) {
+// DeleteCustomer godoc
+// @Summary Delete customer
+// @Description Delete customer by id
+// @Tags customers
+// @Accept  json
+// @Produce  json
+// @Param accountNo path int true "ID of the Customer"
+// @Success 200 {object} models.Customer
+// @Router /customers/{accountNo} [delete]
+func DeleteCustomer(w http.ResponseWriter, r *http.Request) {
 	db := ConnectionHelperORM()
-	db.Where("account_no=?", accountNo).Delete(&models.Customer{})
+	params := mux.Vars(r)
+	inputAccountNo := params["accountNo"]
+	// Convert `traderId` string param to uint64
+	id64, _ := strconv.ParseUint(inputAccountNo, 10, 64)
+	// Convert uint64 to uint
+	idToDelete := uint(id64)
+
+	db.Where("account_no=?", idToDelete).Delete(&models.Customer{})
+	w.WriteHeader(http.StatusNoContent)
 }
