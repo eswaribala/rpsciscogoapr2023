@@ -14,6 +14,21 @@ var transactions []stores.Transaction
 
 func main() {
 	router := mux.NewRouter()
+
+	// Declare the static file directory and point it to the
+	// directory we just made
+	staticFileDirectory := http.Dir("./assets/")
+	// Declare the handler, that routes requests to their respective filename.
+	// The fileserver is wrapped in the `stripPrefix` method, because we want to
+	// remove the "/assets/" prefix when looking for files.
+	// For example, if we type "/assets/index.html" in our browser, the file server
+	// will look for only "index.html" inside the directory declared above.
+	// If we did not strip the prefix, the file server would look for
+	// "./assets/assets/index.html", and yield an error
+	staticFileHandler := http.StripPrefix("/assets/", http.FileServer(staticFileDirectory))
+	// The "PathPrefix" method acts as a matcher, and matches all routes starting
+	// with "/assets/", instead of the absolute route itself
+	router.PathPrefix("/assets/").Handler(staticFileHandler).Methods("GET")
 	// Create
 	router.HandleFunc("/transactions", createTransactionHandler).Methods("POST")
 
@@ -24,7 +39,7 @@ func main() {
 	stores.ConnectionHelperORM()
 
 	//router.PathPrefix("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	log.Fatal(http.ListenAndServe(":7072", router))
+	log.Fatal(http.ListenAndServe(":7074", router))
 }
 
 func createTransactionHandler(w http.ResponseWriter, r *http.Request) {
