@@ -3,3 +3,6 @@ $ go test -run=^$ -bench=^BenchmarkFoo$ -blockprofile=/tmp/blockprofile.out .
 $ go test -run=^$ -bench=^BenchmarkFoo$ -mutexprofile=/tmp/mutexprofile.out .
 go test -run=^$ -bench=^BenchmarkFoo$ -cpuprofile=cpuprofile.out .
 go tool pprof -http=:5500 cpuprofile.out
+go test -coverprofile=profile.out ./...
+
+go tool cover -html=profile.out
