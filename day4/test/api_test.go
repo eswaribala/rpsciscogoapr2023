@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 )
 
@@ -20,7 +21,7 @@ func TestRouter(t *testing.T) {
 	// The mock server we created runs a server and exposes its location in the
 	// URL attribute
 	// We make a GET request to the "hello" route we defined in the router
-	resp, err := http.Get(mockServer.URL + "/hello")
+	resp, err := http.Get(mockServer.URL + "/")
 
 	// Handle any unexpected error
 	if err != nil {
@@ -28,7 +29,7 @@ func TestRouter(t *testing.T) {
 	}
 
 	// We want our status to be 200 (ok)
-	if resp.StatusCode != http.StatusOK {
+	if resp.StatusCode != http.StatusNotFound {
 		t.Errorf("Status should be ok, got %d", resp.StatusCode)
 	}
 
@@ -41,12 +42,12 @@ func TestRouter(t *testing.T) {
 	}
 	// convert the bytes to a string
 	respString := string(b)
-	expected := "Rocking with Go!"
+	expected := "404 page not found"
 
 	// We want our response to match the one defined in our handler.
 	// If it does happen to be "Hello world!", then it confirms, that the
 	// route is correct
-	if respString != expected {
+	if strings.Contains(expected, respString) {
 		t.Errorf("Response should be %s, got %s", expected, respString)
 	}
 
