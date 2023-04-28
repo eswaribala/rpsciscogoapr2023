@@ -1,1 +1,8 @@
 docker run --name cisco-mongo -p 27017:27017 -d mongo
+docker exec -it <containername /id> /bin/bash
+mongosh
+show dbs
+use dbname
+show collections
+db.colleactioname.find()
+
